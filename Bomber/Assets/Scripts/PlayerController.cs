@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour {
     bool IsGrounded()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
