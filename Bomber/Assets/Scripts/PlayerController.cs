@@ -54,7 +54,10 @@ public class PlayerController : MonoBehaviour {
         {
             HorizontalMovement(0);
             //STARTS IDLE ANIMATION
-            anim.SetInteger("State", 0);
+            if (IsGrounded())
+            {
+                //anim.SetInteger("State", 0);
+            }
         }
 
         //DETECT VERTICAL INPUT
@@ -86,6 +89,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("TEST TEST TEST");
+            //STARTS IDLE ANIMATION AFTER LANDING
             anim.SetInteger("State", 0);
         }
     }
