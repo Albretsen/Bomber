@@ -19,12 +19,14 @@ public class PlayerController : MonoBehaviour {
 
     //REFERENCES
     Rigidbody2D rb;
+    Animator anim;
 
     // Use this for initialization
     void Start () {
         //SETTING UP REFERENCES
         rb = GetComponent<Rigidbody2D>();
         GroundCheck = transform.Find("GroundCheck");
+        anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
     //JUMP
     void Jump()
     {
+        anim.SetInteger("State", 3);
         rb.velocity = new Vector2(rb.velocity.x,jumpStrength);
     }
 
@@ -60,6 +63,15 @@ public class PlayerController : MonoBehaviour {
     void HorizontalMovement(float direction)
     {
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+    }
+
+    void OnCollisionEnter2D (Collision2D c)
+    {
+        if(c.tag == "Ground")
+        {
+            Debug.Log("SHOULD PLAY");
+            anim.SetInteger("State", 0);
+        }
     }
 
     //CHECK IF GROUNDED
