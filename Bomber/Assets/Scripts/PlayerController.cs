@@ -39,7 +39,10 @@ public class PlayerController : MonoBehaviour {
         {
             HorizontalMovement(Input.GetAxisRaw("Horizontal"));
             //STARTS WALKING ANIMATION
-            anim.SetInteger("State", 1);
+            if (IsGrounded())
+            {
+                anim.SetInteger("State", 1);
+            }
             //FLIPS THE SPRITE RENDERER
             if(Input.GetAxisRaw("Horizontal") < 0)
             {
@@ -49,6 +52,14 @@ public class PlayerController : MonoBehaviour {
             {
                 sr.flipX = false;
             }
+            //MOVE AFTER LANDING
+            if(rb.velocity.y > 0.5f || rb.velocity.y < -0.5f)
+            {
+                if (IsGrounded())
+                {
+                    anim.SetInteger("State", 2);
+                }
+            }
         }
         else
         {
@@ -56,7 +67,7 @@ public class PlayerController : MonoBehaviour {
             //STARTS IDLE ANIMATION
             if (IsGrounded())
             {
-                //anim.SetInteger("State", 0);
+                anim.SetInteger("State", 0);
             }
         }
 
