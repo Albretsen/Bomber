@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     //REFERENCES
     Rigidbody2D rb;
     Animator anim;
+    SpriteRenderer sr;
 
     // Use this for initialization
     void Start () {
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         GroundCheck = transform.Find("GroundCheck");
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
@@ -36,10 +38,23 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetAxisRaw("Horizontal") != 0)
         {
             HorizontalMovement(Input.GetAxisRaw("Horizontal"));
+            //STARTS WALKING ANIMATION
+            anim.SetInteger("State", 1);
+            //FLIPS THE SPRITE RENDERER
+            if(Input.GetAxisRaw("Horizontal") < 0)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
         }
         else
         {
             HorizontalMovement(0);
+            //STARTS IDLE ANIMATION
+            anim.SetInteger("State", 0);
         }
 
         //DETECT VERTICAL INPUT
@@ -55,6 +70,7 @@ public class PlayerController : MonoBehaviour {
     //JUMP
     void Jump()
     {
+        //STARTS JUMP ANIMATION
         anim.SetInteger("State", 3);
         rb.velocity = new Vector2(rb.velocity.x,jumpStrength);
     }
@@ -65,17 +81,17 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
 
-    void OnCollisionEnter2D (Collision2D c)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(c.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("SHOULD PLAY");
+            Debug.Log("TEST TEST TEST");
             anim.SetInteger("State", 0);
         }
     }
 
-    //CHECK IF GROUNDED
-    bool IsGrounded()
+        //CHECK IF GROUNDED
+        bool IsGrounded()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
         Gizmos.color = Color.yellow;
