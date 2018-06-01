@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
                 sr.flipX = false;
             }
             //MOVE AFTER LANDING
-            if(rb.velocity.y > 0.5f || rb.velocity.y < -0.5f)
+            if(rb.velocity.y > 0.5f || rb.velocity.y < -0.2f)
             {
                 if (IsGrounded())
                 {
@@ -79,6 +79,12 @@ public class PlayerController : MonoBehaviour {
                 Jump();
             }
         }
+
+        //FALLING ANIMATION WHEN GOING DOWN WITHOUT JUMPING
+        if(!IsGrounded() && rb.velocity.y < -0.5)
+        {
+            anim.SetInteger("State", 4);
+        }
 	}
 
     //JUMP
@@ -99,7 +105,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("TEST TEST TEST");
             //STARTS IDLE ANIMATION AFTER LANDING
             anim.SetInteger("State", 0);
         }
