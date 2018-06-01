@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     //SCRIPT VARIABLES
     const float GroundedRadius = .2f;
+    Vector2 movement;
 
     //REFERENCES
     Rigidbody2D rb;
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour {
     //DIRECTION IS THE HORIZONTAL INPUT VALUE (-1 to 1)
     void HorizontalMovement(float direction)
     {
-        rb.velocity = new Vector2(direction * speed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
 
     //CHECK IF GROUNDED
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour {
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
