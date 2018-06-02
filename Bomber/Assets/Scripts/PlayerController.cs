@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
     }
 
+    void Hit()
+    {
+        Debug.Log("HIT PLAYER");
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
