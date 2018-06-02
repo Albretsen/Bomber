@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 
     //PUBLIC VARIABLES
     public float speed;
+    public float bulletSpeed;
 
     //PUBLIC REFERENCES
     public GameObject bulletPrefab;
@@ -70,7 +71,7 @@ public class EnemyController : MonoBehaviour {
 
             var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
-            bullet.GetComponent<Rigidbody2D>().velocity = heading * 2;
+            bullet.GetComponent<Rigidbody2D>().velocity = heading * bulletSpeed;
 
             Destroy(bullet, 2.0f);
         }

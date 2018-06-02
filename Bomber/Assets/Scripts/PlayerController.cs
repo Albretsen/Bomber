@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
     }
 
-    void Hit()
+    public void Hit()
     {
         Debug.Log("HIT PLAYER");
     }

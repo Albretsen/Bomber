@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    PlayerController playerController;
+
+    void Start()
+    {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
+
+	void OnTriggerEnter2D(Collider2D c)
+    {
+        if(c.tag == "Player")
+        {
+            playerController.Hit();
+            Destroy(gameObject);
+        }
+        else if(c.tag == "Ground")
+        {
+            Debug.Log("HIT GROUND");
+            Destroy(gameObject);
+        }
+    }
 }
