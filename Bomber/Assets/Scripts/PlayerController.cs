@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask WhatIsGround;
 
     //SCRIPT VARIABLES
-    const float GroundedRadius = .2f;
+    public float GroundedRadius = .2f;
     Vector2 movement;
 
     //REFERENCES
@@ -30,9 +30,15 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
         //DETECT HORIZONTAL INPUT
         if(Input.GetAxisRaw("Horizontal") != 0)
@@ -84,6 +90,11 @@ public class PlayerController : MonoBehaviour {
         if(!IsGrounded() && rb.velocity.y < -0.5)
         {
             anim.SetInteger("State", 4);
+        }
+
+        if(!IsGrounded() && rb.velocity.y > 0.5)
+        {
+            anim.SetInteger("State", 3);
         }
 	}
 
