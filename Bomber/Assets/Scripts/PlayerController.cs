@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Hit()
     {
+        //TRIGGER EXPLOSION
     }
 
     void OnDrawGizmosSelected()
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour {
     void Jump()
     {
         //STARTS JUMP ANIMATION
-        anim.SetInteger("State", 3);
+        //anim.SetInteger("State", 3);
         rb.velocity = new Vector2(rb.velocity.x,jumpStrength);
     }
 
