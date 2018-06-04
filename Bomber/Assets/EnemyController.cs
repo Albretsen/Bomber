@@ -11,13 +11,14 @@ public class EnemyController : MonoBehaviour {
     //PUBLIC REFERENCES
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public Transform rotate;
 
     //SCRIPT VARIABLES
     bool walkLeft;
     bool walkRight;
     float timeFired;
     int walkDirection;
-    float fireRate = 1f;
+    float fireRate = 0.1f;
     float nextFire = 0.0F;
 
     //REFERENCES
@@ -63,15 +64,20 @@ public class EnemyController : MonoBehaviour {
 
     void Fire()
     {
+        //Checks if NEXTFIRE time has passed
         if (Time.time > nextFire)
         {
+
             nextFire = Time.time + fireRate;
 
             var heading = player.position - tf.position;
+            var heading2 = bulletSpawn.position - rotate.position;
 
+
+            Debug.Log("CGECJK");
             var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
-            bullet.GetComponent<Rigidbody2D>().velocity = heading * bulletSpeed;
+            bullet.GetComponent<Rigidbody2D>().velocity = heading.normalized * bulletSpeed;
 
             Destroy(bullet, 2.0f);
         }
@@ -79,6 +85,9 @@ public class EnemyController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //ARM ROTATION!
+        //arm.RotateAround(rotate.position, Vector3.forward, 20 * Time.deltaTime);
+
         //PLAYERHIT SIDE RAYCAST
         var heading = player.position - tf.position;
 
@@ -97,7 +106,7 @@ public class EnemyController : MonoBehaviour {
         Debug.DrawRay(lsr.position, Vector2.left, Color.red);
         if (hitLeftSide.collider != null)
         {
-            if(hitLeftSide.transform.tag == "Ground")
+            if(hitLeftSide.transform.tag == "PatrolPost")
             {
                 walkLeft = false;
                 walkRight = true;
@@ -109,7 +118,7 @@ public class EnemyController : MonoBehaviour {
         Debug.DrawRay(rsr.position, Vector2.right, Color.red);
         if (hitRightSide.collider != null)
         {
-            if (hitRightSide.transform.tag == "Ground")
+            if (hitRightSide.transform.tag == "PatrolPost")
             {
                 walkLeft = true;
                 walkRight = false;

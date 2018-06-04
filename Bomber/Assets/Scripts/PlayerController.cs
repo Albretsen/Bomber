@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour {
 
     public void Hit()
     {
-        Debug.Log("HIT PLAYER");
     }
 
     void OnDrawGizmosSelected()

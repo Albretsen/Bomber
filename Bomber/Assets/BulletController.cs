@@ -20,7 +20,6 @@ public class BulletController : MonoBehaviour {
         }
         else if(c.tag == "Ground")
         {
-            Debug.Log("HIT GROUND");
             Destroy(gameObject);
         }
     }
