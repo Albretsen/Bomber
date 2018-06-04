@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
+        //Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
     }
 
     // Update is called once per frame

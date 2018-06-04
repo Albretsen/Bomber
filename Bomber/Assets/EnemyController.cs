@@ -7,18 +7,22 @@ public class EnemyController : MonoBehaviour {
     //PUBLIC VARIABLES
     public float speed;
     public float bulletSpeed;
+    public int rotationOffset;
+    public float fireRate;
+    public float viewDistance;
+    public float bulletDestroySeconds;
 
     //PUBLIC REFERENCES
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public Transform rotate;
+    public LayerMask ignoreLayer;
 
     //SCRIPT VARIABLES
     bool walkLeft;
     bool walkRight;
     float timeFired;
     int walkDirection;
-    float fireRate = 0.1f;
     float nextFire = 0.0F;
 
     //REFERENCES
@@ -73,13 +77,18 @@ public class EnemyController : MonoBehaviour {
             var heading = player.position - tf.position;
             var heading2 = bulletSpawn.position - rotate.position;
 
+            //ARM ROTATION TEST
+            Vector3 difference = player.position - arm.position;
+            difference.Normalize();
 
-            Debug.Log("CGECJK");
+            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
+
             var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
             bullet.GetComponent<Rigidbody2D>().velocity = heading.normalized * bulletSpeed;
 
-            Destroy(bullet, 2.0f);
+            Destroy(bullet, bulletDestroySeconds);
         }
     }
 
@@ -91,7 +100,7 @@ public class EnemyController : MonoBehaviour {
         //PLAYERHIT SIDE RAYCAST
         var heading = player.position - tf.position;
 
-        RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, 40f);
+        RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, viewDistance, ignoreLayer);
         Debug.DrawRay(arm.position, heading, Color.magenta);
         if (playerhit.collider != null)
         {
