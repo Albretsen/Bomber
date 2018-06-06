@@ -12,10 +12,10 @@ EXTRA ADD CROUCHING
 - Create a PAUSE MENU
 - Make background music
 - Add sounds
-- Refine character movement
+- Refine character movement WIP
 
 # IDEA BOARD
-- Use AddForce on all bodyparts on explosion
+- Use AddForce on all bodyparts on explosion DONE
 - Pixel art or normal menus?
 - Powerups [Superjump, Increased speed, Invincibility, Larger explosion?]
 - In game currency [Earned from completing levels. Amount is based on score. Can earn aditional currency from REWARD ADS]
