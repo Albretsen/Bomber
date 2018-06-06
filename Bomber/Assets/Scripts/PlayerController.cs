@@ -12,10 +12,12 @@ public class PlayerController : MonoBehaviour {
     private Transform GroundCheck;
     [Space(10)]
     public LayerMask WhatIsGround;
+    public GameObject explosionPrefab;
 
     //SCRIPT VARIABLES
     public float GroundedRadius = .2f;
     Vector2 movement;
+    
 
     //REFERENCES
     Rigidbody2D rb;
@@ -33,7 +35,8 @@ public class PlayerController : MonoBehaviour {
 
     public void Hit()
     {
-        //TRIGGER EXPLOSION
+        var bullet = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()

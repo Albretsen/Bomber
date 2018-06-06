@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour {
 
     //PUBLIC REFERENCES
     public GameObject bulletPrefab;
+    public GameObject muzzleFlashEffect;
     public Transform bulletSpawn;
     public Transform rotate;
     public LayerMask ignoreLayer;
@@ -75,7 +76,6 @@ public class EnemyController : MonoBehaviour {
             nextFire = Time.time + fireRate;
 
             var heading = player.position - tf.position;
-            var heading2 = bulletSpawn.position - rotate.position;
 
             //ARM ROTATION TEST
             Vector3 difference = player.position - arm.position;
@@ -85,8 +85,10 @@ public class EnemyController : MonoBehaviour {
             arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
 
             var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            var muzzleFlash = (GameObject)Instantiate(muzzleFlashEffect, bulletSpawn.position, bulletSpawn.rotation);
 
             bullet.GetComponent<Rigidbody2D>().velocity = heading.normalized * bulletSpeed;
+            Destroy(muzzleFlash, 1f);
 
             Destroy(bullet, bulletDestroySeconds);
         }
