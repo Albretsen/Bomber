@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour {
     //SCRIPT VARIABLES
     public float GroundedRadius = .2f;
     Vector2 movement;
-    
+    PlayAnimation playAnim;
+    bool moveRight;
+    bool moveLeft;
+    bool jump;
 
     //REFERENCES
     Rigidbody2D rb;
@@ -31,12 +34,14 @@ public class PlayerController : MonoBehaviour {
         GroundCheck = transform.Find("GroundCheck");
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        playAnim = GameObject.Find("Dead").GetComponent<PlayAnimation>();
     }
 
     public void Hit()
     {
         var bullet = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
         Destroy(gameObject);
+        playAnim.PlayAnim();
     }
 
     void OnDrawGizmosSelected()
@@ -49,16 +54,28 @@ public class PlayerController : MonoBehaviour {
     void Update () {
 		
         //DETECT HORIZONTAL INPUT
-        if(Input.GetAxisRaw("Horizontal") != 0)
+        if(Input.GetAxisRaw("Horizontal") != 0 || moveRight || moveLeft)
         {
-            HorizontalMovement(Input.GetAxisRaw("Horizontal"));
+            if (Input.GetAxisRaw("Horizontal") != 0)
+            {
+                HorizontalMovement(Input.GetAxisRaw("Horizontal"));
+            }
+            else if (moveRight)
+            {
+                HorizontalMovement(1);
+            }
+            else if (moveLeft)
+            {
+                HorizontalMovement(-1);
+            }
+
             //STARTS WALKING ANIMATION
             if (IsGrounded())
             {
                 anim.SetInteger("State", 1);
             }
             //FLIPS THE SPRITE RENDERER
-            if(Input.GetAxisRaw("Horizontal") < 0)
+            if(Input.GetAxisRaw("Horizontal") < 0 || moveLeft)
             {
                 sr.flipX = true;
             }
@@ -86,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //DETECT VERTICAL INPUT
-        if(Input.GetAxisRaw("Vertical") > 0)
+        if(Input.GetAxisRaw("Vertical") > 0 || jump)
         {
             if (IsGrounded())
             {
@@ -140,5 +157,33 @@ public class PlayerController : MonoBehaviour {
                 return true;
         }
         return false;
+    }
+
+    //MOBILE CONTROLS
+    public void MoveRight()
+    {
+        moveRight = true;
+    }
+    public void MoveLeft()
+    {
+        moveLeft = true;
+    }
+
+    public void MoveRightReleased()
+    {
+        moveRight = false;
+    }
+    public void MoveLeftReleased()
+    {
+        moveLeft = false;
+    }
+
+    public void JumpMobile()
+    {
+        jump = true;
+    }
+    public void JumpMobileReleased()
+    {
+        jump = false;
     }
 }
