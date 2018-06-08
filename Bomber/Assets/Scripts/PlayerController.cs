@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
         GroundCheck = transform.Find("GroundCheck");
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        playAnim = GameObject.Find("Dead").GetComponent<PlayAnimation>();
+        //playAnim = GameObject.Find("Dead").GetComponent<PlayAnimation>();
     }
 
     public void Hit()

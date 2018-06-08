@@ -47,8 +47,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CaveBackground
+    uniqueID: 332319033
+    locked: 0
+  - name: Decorations
+    uniqueID: 1449290063
+    locked: 0
   - name: Player
     uniqueID: 2962472405
+    locked: 0
+  - name: Dirt
+    uniqueID: 1497604943
+    locked: 0
+  - name: WALLGRAS
+    uniqueID: 1578744217
     locked: 0
   - name: Grass
     uniqueID: 2028369469
