@@ -10,14 +10,16 @@ public class PlayerController : MonoBehaviour {
     public float jumpStrength;
     [Header("Raycast ground check")]
     private Transform GroundCheck;
-    [Space(10)]
     public LayerMask WhatIsGround;
+    public LayerMask WhatAffectedByExplosion;
+    [Header("Explosion")]
     public GameObject explosionPrefab;
+    public float explosionRadius;
 
     //SCRIPT VARIABLES
     public float GroundedRadius = .2f;
     Vector2 movement;
-    PlayAnimation playAnim;
+    
     bool moveRight;
     bool moveLeft;
     bool jump;
@@ -26,6 +28,10 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sr;
+    PlayAnimation playAnim;
+    Objective obj;
+    Transform tfObj;
+    GameMaster gameMaster;
 
     // Use this for initialization
     void Start () {
@@ -34,25 +40,46 @@ public class PlayerController : MonoBehaviour {
         GroundCheck = transform.Find("GroundCheck");
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        obj = GameObject.Find("Objective").GetComponent<Objective>();
+        tfObj = GameObject.Find("Objective").GetComponent<Transform>();
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         //playAnim = GameObject.Find("Dead").GetComponent<PlayAnimation>();
     }
 
     public void Hit()
     {
-        var bullet = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
+        //CREATE EXPLOSION
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, WhatAffectedByExplosion);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                obj.Hit((transform.position - tfObj.position).normalized);
+            }
+        }
+
+        gameMaster.Direction((transform.position - tfObj.position).normalized, 1);
+
+        var explodingPlayer = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
         Destroy(gameObject);
-        playAnim.PlayAnim();
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        //Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
+        Gizmos.DrawSphere(transform.position, explosionRadius);
+        Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
     }
 
     // Update is called once per frame
     void Update () {
-		
+
+        //DETECT MANUAL EXPLOSION
+        if (Input.GetKeyDown("space"))
+        {
+            Hit();
+        }
+
         //DETECT HORIZONTAL INPUT
         if(Input.GetAxisRaw("Horizontal") != 0 || moveRight || moveLeft)
         {
@@ -146,8 +173,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-        //CHECK IF GROUNDED
-        bool IsGrounded()
+    //CHECK IF GROUNDED
+    bool IsGrounded()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
         Gizmos.color = Color.yellow;

@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
     public float fireRate;
     public float viewDistance;
     public float bulletDestroySeconds;
+    public bool disable;
 
     //PUBLIC REFERENCES
     public GameObject bulletPrefab;
@@ -22,9 +23,11 @@ public class EnemyController : MonoBehaviour {
     //SCRIPT VARIABLES
     bool walkLeft;
     bool walkRight;
+    bool firstTimeSeen = true;
     float timeFired;
     int walkDirection;
-    float nextFire = 0.0F;
+    float nextFire = 0.0f;
+    float shootAllowed = 0.0f;
 
     //REFERENCES
     Rigidbody2D rb;
@@ -70,7 +73,7 @@ public class EnemyController : MonoBehaviour {
     void Fire()
     {
         //Checks if NEXTFIRE time has passed
-        if (Time.time > nextFire)
+        if (Time.time > nextFire && !disable)
         {
 
             nextFire = Time.time + fireRate;
@@ -101,16 +104,22 @@ public class EnemyController : MonoBehaviour {
 
         //PLAYERHIT SIDE RAYCAST
         var heading = player.position - tf.position;
-
         RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, viewDistance, ignoreLayer);
         Debug.DrawRay(arm.position, heading, Color.magenta);
         if (playerhit.collider != null)
         {
-            if (playerhit.transform.tag == "Player")
+            if (playerhit.transform.tag == "Player" && Time.time > shootAllowed)
             {
+                if (firstTimeSeen)
+                {
+                    shootAllowed = Time.time + 0.1f;
+                    firstTimeSeen = false;
+                    return;
+                }
                 Fire();
             }
         }
+        
 
         //LEFT SIDE RAYCAST
         RaycastHit2D hitLeftSide = Physics2D.Raycast(lsr.position, Vector2.left,1f);

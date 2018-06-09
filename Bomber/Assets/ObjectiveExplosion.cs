@@ -1,0 +1,55 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjectiveExplosion : MonoBehaviour
+{    
+    //TWEAKABLE VARIABLES
+    public float explosionForce;
+
+    //REFERENCES
+    public Rigidbody2D head;
+    public Rigidbody2D armRight;
+    public Rigidbody2D armLeft;
+    public Rigidbody2D footRight;
+    public Rigidbody2D footLeft;
+    public Rigidbody2D torso;
+
+    //
+    Vector2 direction = new Vector2(1f, 0.1f);
+    GameMaster gm;
+    bool hasExploded = false;
+
+    // Use this for initialization
+    void Start()
+    {
+        gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+    }
+
+    void Update()
+    {
+        Vector2 dir = new Vector2(0, 0);
+        direction = gm.Direction(dir, 2);
+        if(direction.y > 0.01 || direction.x > 0.01 || direction.y < -0.01 || direction.x < -0.01)
+        {
+            Explode(direction);
+        }
+    }
+
+    public void Explode(Vector2 direction)
+    {
+        if (!hasExploded)
+        {
+            head.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            armRight.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            armLeft.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            footRight.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            footLeft.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            torso.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+
+
+            Debug.Log("FUCK FUCK FUCK");
+            hasExploded = true;
+        }
+    }
+}
