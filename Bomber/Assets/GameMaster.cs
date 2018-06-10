@@ -5,16 +5,12 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour {
 
     Vector2 localDirection;
+    public static bool playerDead = false;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        playerDead = false;
+    }
 
     //STORES A VECTOR2 DIRECTIOM WHICH IS FIRST GIVEN BY THE PLAYERCONTROLLER SCRIPT(1),
     //THEN RETRIEVED BY THE OBJECTIVEEXPLOSION SCRIPT (2)!

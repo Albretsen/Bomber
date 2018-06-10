@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveExplosion : MonoBehaviour
 {    
@@ -19,10 +20,12 @@ public class ObjectiveExplosion : MonoBehaviour
     Vector2 direction = new Vector2(1f, 0.1f);
     GameMaster gm;
     bool hasExploded = false;
+    float timePassed;
 
     // Use this for initialization
     void Start()
     {
+        timePassed = Time.time + 3;
         gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
     }
 
@@ -33,6 +36,12 @@ public class ObjectiveExplosion : MonoBehaviour
         if(direction.y > 0.01 || direction.x > 0.01 || direction.y < -0.01 || direction.x < -0.01)
         {
             Explode(direction);
+        }
+
+        //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
+        if(hasExploded && timePassed < Time.time)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }
 
@@ -47,8 +56,6 @@ public class ObjectiveExplosion : MonoBehaviour
             footLeft.AddForce(direction * explosionForce, ForceMode2D.Impulse);
             torso.AddForce(direction * explosionForce, ForceMode2D.Impulse);
 
-
-            Debug.Log("FUCK FUCK FUCK");
             hasExploded = true;
         }
     }

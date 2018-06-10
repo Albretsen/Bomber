@@ -103,20 +103,23 @@ public class EnemyController : MonoBehaviour {
         //arm.RotateAround(rotate.position, Vector3.forward, 20 * Time.deltaTime);
 
         //PLAYERHIT SIDE RAYCAST
-        var heading = player.position - tf.position;
-        RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, viewDistance, ignoreLayer);
-        Debug.DrawRay(arm.position, heading, Color.magenta);
-        if (playerhit.collider != null)
+        if (!GameMaster.playerDead)
         {
-            if (playerhit.transform.tag == "Player" && Time.time > shootAllowed)
+            var heading = player.position - tf.position;
+            RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, viewDistance, ignoreLayer);
+            Debug.DrawRay(arm.position, heading, Color.magenta);
+            if (playerhit.collider != null)
             {
-                if (firstTimeSeen)
+                if (playerhit.transform.tag == "Player" && Time.time > shootAllowed)
                 {
-                    shootAllowed = Time.time + 0.1f;
-                    firstTimeSeen = false;
-                    return;
+                    if (firstTimeSeen)
+                    {
+                        shootAllowed = Time.time + 0.1f;
+                        firstTimeSeen = false;
+                        return;
+                    }
+                    Fire();
                 }
-                Fire();
             }
         }
         

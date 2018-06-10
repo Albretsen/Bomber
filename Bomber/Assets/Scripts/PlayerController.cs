@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour {
 
         var explodingPlayer = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
         Destroy(gameObject);
+        GameMaster.playerDead = true;
     }
 
     void OnDrawGizmosSelected()
