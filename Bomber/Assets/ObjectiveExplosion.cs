@@ -41,7 +41,7 @@ public class ObjectiveExplosion : MonoBehaviour
         //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
         if(hasExploded && timePassed < Time.time)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
