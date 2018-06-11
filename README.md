@@ -13,6 +13,13 @@ EXTRA ADD CROUCHING
 - Make background music
 - Add sounds
 - Refine character movement WIP
+# SPRITES NEEDED
+- Enemy with seperate arm
+- A MENU button, for when you're in game and want to pause the game
+- PAUSE MENU buttons [Play,Options,Back]
+- Crouching animation for Tom
+- Decorations eg. rocks, some bushes, animated grass, clouds and better mountain backgrounds
+
 
 # IDEA BOARD
 - Use AddForce on all bodyparts on explosion DONE
