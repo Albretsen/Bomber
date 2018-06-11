@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour {
 
     Vector2 localDirection;
+    public static float distance = 1f;
     public static bool playerDead = false;
 
 	// Use this for initialization

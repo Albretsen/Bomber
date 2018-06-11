@@ -65,6 +65,9 @@ TagManager:
   - name: Grass
     uniqueID: 2028369469
     locked: 0
+  - name: Explosion
+    uniqueID: 175670863
+    locked: 0
   - name: Foreground
     uniqueID: 3616930151
     locked: 0

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask WhatAffectedByExplosion;
     [Header("Explosion")]
     public GameObject explosionPrefab;
+    public GameObject explosionFirePrefab;
     public float explosionRadius;
 
     //SCRIPT VARIABLES
@@ -55,12 +56,15 @@ public class PlayerController : MonoBehaviour {
             if (colliders[i].gameObject != gameObject)
             {
                 obj.Hit((transform.position - tfObj.position).normalized);
+                GameMaster.distance = Vector2.Distance(transform.position, tfObj.position);
+                Debug.Log(GameMaster.distance);
             }
         }
 
         gameMaster.Direction((transform.position - tfObj.position).normalized, 1);
 
         var explodingPlayer = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
+        var explosion = (GameObject)Instantiate(explosionFirePrefab, rb.position, transform.rotation);
         Destroy(gameObject);
         GameMaster.playerDead = true;
     }
