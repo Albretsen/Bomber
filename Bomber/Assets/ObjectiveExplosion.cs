@@ -49,12 +49,12 @@ public class ObjectiveExplosion : MonoBehaviour
     {
         if (!hasExploded)
         {
-            head.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-            armRight.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-            armLeft.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-            footRight.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-            footLeft.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-            torso.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            head.AddForce(direction * explosionForce * 1.2f, ForceMode2D.Impulse);
+            armRight.AddForce(direction * explosionForce * 1.5f, ForceMode2D.Impulse);
+            armLeft.AddForce(direction * explosionForce * 1.5f, ForceMode2D.Impulse);
+            footRight.AddForce(direction * explosionForce * 1.35f, ForceMode2D.Impulse);
+            footLeft.AddForce(direction * explosionForce * 1.35f, ForceMode2D.Impulse);
+            torso.AddForce(direction * explosionForce * 1f, ForceMode2D.Impulse);
 
             hasExploded = true;
         }

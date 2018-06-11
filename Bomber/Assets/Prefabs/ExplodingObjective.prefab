@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef4ce786279c034892ab81f2d4792f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 31.48
+  explosionForce: 14.93
   head: {fileID: 50780221968160364}
   armRight: {fileID: 50576854203460644}
   armLeft: {fileID: 50086444531856982}
