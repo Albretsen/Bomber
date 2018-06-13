@@ -17203,6 +17203,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 324461349}
   optionsMenu: {fileID: 173397350}
   audioMixer: {fileID: 24100000, guid: bd58416fb99366a4e80919bfeb25483f, type: 2}
+  mainSlider: {fileID: 0}
 --- !u!224 &1010090296
 RectTransform:
   m_ObjectHideFlags: 0
