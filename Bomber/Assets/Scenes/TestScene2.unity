@@ -175,7 +175,7 @@ Prefab:
     - target: {fileID: 114820875976736870, guid: 298acc75716818747b719d468e446594,
         type: 2}
       propertyPath: bulletSpeed
-      value: 35
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114820875976736870, guid: 298acc75716818747b719d468e446594,
         type: 2}
@@ -200,7 +200,7 @@ Prefab:
     - target: {fileID: 114820875976736870, guid: 298acc75716818747b719d468e446594,
         type: 2}
       propertyPath: disable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212497193220763376, guid: 298acc75716818747b719d468e446594,
         type: 2}
@@ -4304,7 +4304,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - _DestinationResolution: {r: 740, g: 360, b: 0, a: 0}
+    - _DestinationResolution: {r: 956, g: 183, b: 0, a: 0}
 --- !u!4 &253081354 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4979223392904472, guid: 9be02b9f010368341b0a3a999b75da03,
@@ -4519,7 +4519,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 10
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 739.2069, y: 360}
+  m_ReferenceResolution: {x: 739.86456, y: 360}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -14749,7 +14749,7 @@ Prefab:
     - target: {fileID: 20848836646754068, guid: fbd892a47defa204693a8029ddc8071b,
         type: 2}
       propertyPath: orthographic size
-      value: 22.1
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4773524255566280, guid: fbd892a47defa204693a8029ddc8071b, type: 2}
       propertyPath: m_LocalScale.x
@@ -20928,8 +20928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88f1386dd63147198d003daff00d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenResolution: {x: 1067, y: 638}
-  internalResolution: {x: 740, y: 442}
+  screenResolution: {x: 956, y: 183}
+  internalResolution: {x: 1881, y: 360}
   upscaledResolution: {x: 0, y: 0}
   smooth: 0
   forceSquarePixels: 0
