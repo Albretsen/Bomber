@@ -176,10 +176,14 @@ Prefab:
         type: 2}
       propertyPath: bulletSpeed
 <<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
+<<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
       value: 35
 =======
       value: 10
 >>>>>>> parent of ff42312... Merge branwrgwarawawch 'master' of https://github.com/Aski09/Bomber:Bomber/Assets/Scenes/TestScene2.unity
+=======
+      value: 35
+>>>>>>> parent of 6030658... rhytnxhtgdhtd:Bomber/Assets/Scenes/TestScene2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 114820875976736870, guid: 298acc75716818747b719d468e446594,
         type: 2}
@@ -4309,6 +4313,7 @@ Material:
     m_Floats: []
     m_Colors:
 <<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
+<<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4329,6 +4334,9 @@ Material:
 =======
     - _DestinationResolution: {r: 956, g: 183, b: 0, a: 0}
 >>>>>>> parent of ff42312... Merge branwrgwarawawch 'master' of https://github.com/Aski09/Bomber:Bomber/Assets/Scenes/TestScene2.unity
+=======
+    - _DestinationResolution: {r: 740, g: 360, b: 0, a: 0}
+>>>>>>> parent of 6030658... rhytnxhtgdhtd:Bomber/Assets/Scenes/TestScene2.unity
 --- !u!4 &253081354 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4979223392904472, guid: 9be02b9f010368341b0a3a999b75da03,
@@ -4544,6 +4552,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 10
   m_ScaleFactor: 1
 <<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
+<<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4564,6 +4573,9 @@ MonoBehaviour:
 =======
   m_ReferenceResolution: {x: 739.86456, y: 360}
 >>>>>>> parent of ff42312... Merge branwrgwarawawch 'master' of https://github.com/Aski09/Bomber:Bomber/Assets/Scenes/TestScene2.unity
+=======
+  m_ReferenceResolution: {x: 739.2069, y: 360}
+>>>>>>> parent of 6030658... rhytnxhtgdhtd:Bomber/Assets/Scenes/TestScene2.unity
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -14794,6 +14806,7 @@ Prefab:
         type: 2}
       propertyPath: orthographic size
 <<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
+<<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -14814,6 +14827,9 @@ Prefab:
 =======
       value: 18
 >>>>>>> parent of ff42312... Merge branwrgwarawawch 'master' of https://github.com/Aski09/Bomber:Bomber/Assets/Scenes/TestScene2.unity
+=======
+      value: 22.1
+>>>>>>> parent of 6030658... rhytnxhtgdhtd:Bomber/Assets/Scenes/TestScene2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 4773524255566280, guid: fbd892a47defa204693a8029ddc8071b, type: 2}
       propertyPath: m_LocalScale.x
@@ -21005,6 +21021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
+<<<<<<< HEAD:BomberTom/Assets/Scenes/TestScene2.unity
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -21031,6 +21048,10 @@ MonoBehaviour:
   screenResolution: {x: 956, y: 183}
   internalResolution: {x: 1881, y: 360}
 >>>>>>> parent of ff42312... Merge branwrgwarawawch 'master' of https://github.com/Aski09/Bomber:Bomber/Assets/Scenes/TestScene2.unity
+=======
+  screenResolution: {x: 1067, y: 638}
+  internalResolution: {x: 740, y: 442}
+>>>>>>> parent of 6030658... rhytnxhtgdhtd:Bomber/Assets/Scenes/TestScene2.unity
   upscaledResolution: {x: 0, y: 0}
   smooth: 0
   forceSquarePixels: 0
