@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Explosion : MonoBehaviour {
 
@@ -52,8 +53,12 @@ public class Explosion : MonoBehaviour {
     float footLeftRotation;
     float torsoRotation;
 
+    bool hasExploded;
+    float timePassed;
+
     // Use this for initialization
     void Start () {
+        timePassed = Time.time + 3;
         //FIND REFERENCES
         /*head = GameObject.Find("Head").GetComponent<Rigidbody2D>();
         armRight = GameObject.Find("Arm_Right").GetComponent<Rigidbody2D>();
@@ -99,6 +104,15 @@ public class Explosion : MonoBehaviour {
         Explode();
 	}
 
+    void Update()
+    {
+        //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
+        if (hasExploded && timePassed < Time.time)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     void Explode()
     {
         //ADD ALL VELOCITIES TO ALL 
@@ -119,5 +133,7 @@ public class Explosion : MonoBehaviour {
 
         torso.velocity = torsoVelocity;
         torso.AddTorque(torsoRotation);
+
+        hasExploded = true;
     }
 }
