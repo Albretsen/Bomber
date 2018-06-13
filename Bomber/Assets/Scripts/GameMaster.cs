@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -8,9 +9,13 @@ public class GameMaster : MonoBehaviour {
     public static float distance = 1f;
     public static bool playerDead = false;
 
-	// Use this for initialization
 	void Start () {
         playerDead = false;
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     //STORES A VECTOR2 DIRECTIOM WHICH IS FIRST GIVEN BY THE PLAYERCONTROLLER SCRIPT(1),
